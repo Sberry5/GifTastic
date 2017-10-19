@@ -70,8 +70,8 @@ Trying to accomplish the base goal and THEN improve.
             emotionsStillImage.addClass("gifs");
             emotionsStillImage.attr("data-state", "still");
             //Append the rating to the gif recieved from the API
-            emotionsDiv.append(p);
             emotionsDiv.append(emotionsStillImage);
+            emotionsDiv.append(p);
             //Place div containing gif divs on page
             $("#gifs-appear-here").prepend(emotionsDiv);
           }
@@ -108,10 +108,10 @@ Trying to accomplish the base goal and THEN improve.
       console.log(emotions);
       //Clear user input from form
     $("#emotion-input").val('');
-    });
+    });//put inside function above?
+
 
 /*---------Function to validate user input----------*/
-//put inside function above?
 // if (newEmotion.keyCode >= 65 && newEmotion.keyCode <= 90) {
 //           createButtons();
 //     };
