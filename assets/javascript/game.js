@@ -9,7 +9,6 @@
       //Function to generate initial buttons from emotions array
       function createButtons() {
         //Deleting the emotions prior to adding new emotions
-        //Will stop repeat buttons from being created
         $("#buttons-view").empty();
         //Loop to go through the values in the emotions array
         for (var i = 0; i < emotions.length; i++) {
@@ -99,13 +98,16 @@ Trying to accomplish the base goal and THEN improve.
       //Variable to take user input and remove extra spaces
       var newEmotion = $("#emotion-input").val().trim();
       //Loop to go through the values in the emotions array
+      //Validate user input
+//      if (newEmotion.keyCode >= 65 && newEmotion.keyCode <= 90) {
       //Push user input into new array
       emotions.push(newEmotion);
       //Call the function that creates buttons 
       createButtons();
       //Show emotions array to see if user input was added
       console.log(emotions);
-
+      //Clear user input from form
+    $("#emotion-input").val('');
     });
 
 /*---------Function to validate user input----------*/
