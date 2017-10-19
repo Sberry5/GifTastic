@@ -3,7 +3,7 @@
     var emotionsStillImage
 
     //Initial array of emotions for initial buttons
-  	var emotions = ["happy", "sad", "hyper", "embarrassed", 
+    var emotions = ["happy", "sad", "hyper", "embarrassed", 
         "tired", "fear", "disgust", "surprise"];
 
       //Function to generate initial buttons from emotions array
@@ -13,10 +13,9 @@
         $("#buttons-view").empty();
         //Loop to go through the values in the emotions array
         for (var i = 0; i < emotions.length; i++) {
-          //Then dynamically create a button for each
-          //This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
+          //Then dynamically create a <button> element for each
           var a = $("<button>");
-          //Adding a class of movie to our button
+          //Adding a class of emotion to the button
           a.addClass("emotion");
           //Adding a data-attribute
           a.attr("data-emotion", emotions[i]);
@@ -33,12 +32,12 @@
 
 /*---------AJAX call to access API and return still gifs----------*/
 /*Per class discussion something along the following lines would be better.
-Trying to accomplish the base goal and THEN improve formatting.
+Trying to accomplish the base goal and THEN improve.
   $.get("https://api.giphy.com/v1/gifs/search?", {api_key:"inMvyNCFgyQC1dyf6cQvHVk3djujZ24O", 
   q:`${search}`, limit:"10"}).done(function(response){ */
     
     //Event listener to all buttons
-    $("button").on("click", function() {
+    $(document.body).on("click", ".emotion", function() {
     //Create variable to hold the data from the button clicked to
     //search in the API. Return is limited to 10
       var feelings  = $(this).attr("data-emotion");
@@ -71,7 +70,6 @@ Trying to accomplish the base goal and THEN improve formatting.
             emotionsStillImage.attr("data-still", results[i].images.fixed_height_still.url);
             emotionsStillImage.addClass("gifs");
             emotionsStillImage.attr("data-state", "still");
-            //emotionsStillImage.attr("data-state", still);
             //Append the rating to the gif recieved from the API
             emotionsDiv.append(p);
             emotionsDiv.append(emotionsStillImage);
@@ -96,20 +94,22 @@ Trying to accomplish the base goal and THEN improve formatting.
 // /*---------Function push user input into array----------*/
     
     $("#add-emotion").on("click", function (event) {
- //      //Prevents the default from occuring, in this case sending user input
+      //Prevents the default from occuring, in this case sending user input
        event.preventDefault();
- //      //Variable to take user input and remove extra spaces
+      //Variable to take user input and remove extra spaces
       var newEmotion = $("#emotion-input").val().trim();
- //      //Loop to go through the values in the emotions array
- // //     for (var i = 0; i < emotions.length; i++) {
- //      //Add attributes to new button that those created from the array have
- //      //If user does not put anything in the form, do not create a button
- //      // if ("#emotion-input") {
- //      //Push user input into new array
+      //Loop to go through the values in the emotions array
+      //Push user input into new array
       emotions.push(newEmotion);
- //      //Call the function that creates buttons 
+      //Call the function that creates buttons 
       createButtons();
- //      //
-     console.log(emotions);
- //        }
+      //Show emotions array to see if user input was added
+      console.log(emotions);
+
     });
+
+/*---------Function to validate user input----------*/
+//put inside function above?
+// if (newEmotion.keyCode >= 65 && newEmotion.keyCode <= 90) {
+//           createButtons();
+//     };
